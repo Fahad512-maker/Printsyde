@@ -3,11 +3,15 @@ function StatusBadge({ status }) {
         return <span className="rounded-full bg-emerald-100 px-2.5 py-1 text-xs font-semibold text-emerald-700">Completed</span>;
     }
 
+    if (status === 'Verified') {
+        return <span className="rounded-full bg-cyan-100 px-2.5 py-1 text-xs font-semibold text-cyan-700">Verified</span>;
+    }
+
     if (status === 'Pending') {
         return <span className="rounded-full bg-amber-100 px-2.5 py-1 text-xs font-semibold text-amber-700">Pending</span>;
     }
 
-    return <span className="rounded-full bg-sky-100 px-2.5 py-1 text-xs font-semibold text-sky-700">Info</span>;
+    return <span className="rounded-full bg-sky-100 px-2.5 py-1 text-xs font-semibold text-sky-700">{status}</span>;
 }
 
 export default function ActivityTable({ rows }) {

@@ -12,7 +12,7 @@ export default function MetricCards({ metrics }) {
                 <article key={metric.key} className={`rounded-2xl border p-5 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md ${toneClasses[metric.tone]}`}>
                     <p className="text-[11px] font-semibold tracking-[0.15em] uppercase opacity-70">{metric.label}</p>
                     <p className="mt-2 text-3xl font-black">{metric.value}</p>
-                    <p className="mt-1 text-xs font-semibold opacity-80">{metric.delta} vs last month</p>
+                    <p className="mt-1 text-xs font-semibold opacity-80">{metric.delta}</p>
                 </article>
             ))}
         </section>

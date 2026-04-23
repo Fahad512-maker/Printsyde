@@ -1,23 +1,30 @@
 <?php
 
 use App\Http\Controllers\CatalogItemController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
-use Inertia\Inertia;
 
-Route::get('/', function () {
-    return Inertia::render('Home');
-})->name('home');
-
-Route::get('/about', function () {
-    return Inertia::render('About/About');
-})->name('about');
+Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('/about', [HomeController::class, 'about'])->name('about');
+Route::get('/collections', [HomeController::class, 'collections'])->name('collections');
 
 Route::middleware(['auth', 'verified'])->group(function () {
-    Route::get('/dashboard', [CatalogItemController::class, 'index'])->name('dashboard');
-    Route::post('/dashboard/catalog-items', [CatalogItemController::class, 'store'])->name('dashboard.catalog-items.store');
-    Route::put('/dashboard/catalog-items/{catalogItem}', [CatalogItemController::class, 'update'])->name('dashboard.catalog-items.update');
-    Route::delete('/dashboard/catalog-items/{catalogItem}', [CatalogItemController::class, 'destroy'])->name('dashboard.catalog-items.destroy');
+    Route::get('/dashboard', [DashboardController::class, 'redirect'])->name('dashboard');
+    Route::get('/admin/dashboard', [DashboardController::class, 'admin'])
+        ->middleware('admin')
+        ->name('dashboard.admin');
+    Route::get('/user/dashboard', [DashboardController::class, 'user'])->name('dashboard.user');
+    Route::post('/dashboard/catalog-items', [CatalogItemController::class, 'store'])
+        ->middleware('admin')
+        ->name('dashboard.catalog-items.store');
+    Route::put('/dashboard/catalog-items/{catalogItem}', [CatalogItemController::class, 'update'])
+        ->middleware('admin')
+        ->name('dashboard.catalog-items.update');
+    Route::delete('/dashboard/catalog-items/{catalogItem}', [CatalogItemController::class, 'destroy'])
+        ->middleware('admin')
+        ->name('dashboard.catalog-items.destroy');
 });
 
 Route::middleware('auth')->group(function () {
