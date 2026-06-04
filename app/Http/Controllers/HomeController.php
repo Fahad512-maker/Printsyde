@@ -24,4 +24,14 @@ class HomeController extends Controller
     {
         return Inertia::render('Collections/Index', $this->homePageService->getCollectionPageProps());
     }
+
+    public function design(): Response
+    {
+        return Inertia::render('ComingSoon');
+    }
+
+    public function howItWorks(): Response
+    {
+        return Inertia::render('HowItWorks');
+    }
 }

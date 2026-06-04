@@ -1,5 +1,6 @@
 import { Head } from "@inertiajs/react";
 import { useEffect, useMemo, useState } from "react";
+import CatalogProductCard from "../../Components/CatalogProductCard";
 import Footer from "../../Components/Footer";
 import Header from "../../Components/Header";
 import Navbar from "../../Components/Navbar";
@@ -253,7 +254,7 @@ export default function Collections({
                 <Header />
                 <Navbar />
 
-                <section className="lux-shell py-8 sm:py-12">
+                {/* <section className="lux-shell py-8 sm:py-12">
                     <div className="grid gap-6 xl:grid-cols-[0.78fr_1.22fr]">
                         <div className="lux-panel-dark px-6 py-8 sm:px-8 sm:py-10">
                             <p className="lux-kicker border-amber-400/30 bg-white/5 text-amber-300">
@@ -373,7 +374,7 @@ export default function Collections({
                             </div>
                         </div>
                     </div>
-                </section>
+                </section> */}
 
                 <section className="lux-shell pb-10 sm:pb-14">
                     <div className="grid gap-6 lg:grid-cols-[320px_minmax(0,1fr)]">
@@ -526,29 +527,29 @@ export default function Collections({
                                     <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
                                         <div className="rounded-full border border-slate-200 bg-slate-50 px-4 py-2 text-xs font-semibold tracking-[0.16em] text-slate-600 uppercase">
                                             {activeFilterCount} active filter
-                                            {activeFilterCount === 1
-                                                ? ""
-                                                : "s"}
+                                            {activeFilterCount === 1 ? "" : "s"}
                                         </div>
                                         <label className="flex items-center gap-3 rounded-full border border-slate-200 bg-white px-4 py-2.5 text-xs font-semibold tracking-[0.16em] text-slate-600 uppercase">
                                             <span>Sort</span>
                                             <select
                                                 value={sortBy}
                                                 onChange={(event) =>
-                                                    setSortBy(event.target.value)
+                                                    setSortBy(
+                                                        event.target.value,
+                                                    )
                                                 }
                                                 className="bg-transparent text-slate-950 outline-none"
                                             >
-                                                {Object.entries(sortOptions).map(
-                                                    ([value, label]) => (
-                                                        <option
-                                                            key={value}
-                                                            value={value}
-                                                        >
-                                                            {label}
-                                                        </option>
-                                                    ),
-                                                )}
+                                                {Object.entries(
+                                                    sortOptions,
+                                                ).map(([value, label]) => (
+                                                    <option
+                                                        key={value}
+                                                        value={value}
+                                                    >
+                                                        {label}
+                                                    </option>
+                                                ))}
                                             </select>
                                         </label>
                                     </div>
@@ -557,92 +558,10 @@ export default function Collections({
 
                             <div className="grid gap-6 md:grid-cols-2 2xl:grid-cols-3">
                                 {paginatedProducts.map((product) => (
-                                    <article
+                                    <CatalogProductCard
                                         key={product.id}
-                                        className="overflow-hidden rounded-[1.9rem] border border-slate-200 bg-white/90 shadow-[0_18px_40px_rgba(15,23,42,0.08)] ring-1 ring-slate-200/60 transition duration-300 hover:-translate-y-1 hover:shadow-[0_24px_50px_rgba(15,23,42,0.13)]"
-                                    >
-                                        <div className="relative">
-                                            <img
-                                                src={product.image}
-                                                alt={product.name}
-                                                className="h-72 w-full object-cover"
-                                            />
-                                            <span className="absolute left-4 top-4 rounded-full border border-white/60 bg-white/85 px-3 py-1.5 text-[0.68rem] font-semibold tracking-[0.16em] text-slate-800 uppercase shadow-sm backdrop-blur">
-                                                {product.category}
-                                            </span>
-                                        </div>
-                                        <div className="p-5 sm:p-6">
-                                            <div className="flex items-start justify-between gap-4">
-                                                <div>
-                                                    <p className="text-xs font-semibold tracking-[0.18em] text-amber-700 uppercase">
-                                                        {product.brand}
-                                                    </p>
-                                                    <h3 className="mt-3 text-xl font-black text-slate-950">
-                                                        {product.name}
-                                                    </h3>
-                                                </div>
-                                                <p className="text-lg font-black text-slate-950">
-                                                    {product.price}
-                                                </p>
-                                            </div>
-
-                                            <p className="mt-3 text-sm leading-7 text-slate-600">
-                                                {product.detail}
-                                            </p>
-
-                                            <div className="mt-5 grid gap-3 sm:grid-cols-2">
-                                                <div className="rounded-[1.2rem] border border-slate-200 bg-slate-50 px-4 py-3">
-                                                    <p className="text-[0.68rem] font-semibold tracking-[0.16em] text-slate-500 uppercase">
-                                                        Minimum Order
-                                                    </p>
-                                                    <p className="mt-2 text-sm font-black text-slate-900">
-                                                        {product.minOrder}
-                                                    </p>
-                                                </div>
-                                                <div className="rounded-[1.2rem] border border-slate-200 bg-slate-50 px-4 py-3">
-                                                    <p className="text-[0.68rem] font-semibold tracking-[0.16em] text-slate-500 uppercase">
-                                                        Decoration
-                                                    </p>
-                                                    <p className="mt-2 text-sm font-black text-slate-900">
-                                                        {product.badge}
-                                                    </p>
-                                                </div>
-                                            </div>
-
-                                            <div className="mt-5 flex flex-wrap gap-2">
-                                                {product.sizes.map((size) => (
-                                                    <span
-                                                        key={`${product.id}-${size}`}
-                                                        className="rounded-full border border-slate-200 bg-white px-3 py-1.5 text-[0.68rem] font-semibold tracking-[0.14em] text-slate-700 uppercase"
-                                                    >
-                                                        {size}
-                                                    </span>
-                                                ))}
-                                            </div>
-
-                                            <div className="mt-5 flex items-center justify-between gap-4">
-                                                <div className="flex items-center gap-2">
-                                                    {product.colors.map(
-                                                        (color) => (
-                                                            <span
-                                                                key={`${product.id}-${color}`}
-                                                                className={`h-4 w-4 rounded-full border border-black/10 ${colorSwatchClass(
-                                                                    color,
-                                                                )}`}
-                                                                title={color}
-                                                            />
-                                                        ),
-                                                    )}
-                                                </div>
-                                                <a
-                                                    href="mailto:support@printsyde.com"
-                                                    className="lux-button-secondary px-5 py-2.5 text-[0.72rem]"
-                                                >
-                                                    Request Quote
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </article>
+                                        product={product}
+                                    />
                                 ))}
 
                                 {filteredProducts.length === 0 && (
@@ -676,9 +595,9 @@ export default function Collections({
                                 <div className="lux-panel px-5 py-5 sm:px-6">
                                     <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
                                         <p className="text-sm text-slate-600">
-                                            Showing {paginatedProducts.length} of{" "}
-                                            {filteredProducts.length} filtered
-                                            styles.
+                                            Showing {paginatedProducts.length}{" "}
+                                            of {filteredProducts.length}{" "}
+                                            filtered styles.
                                         </p>
                                         <div className="flex flex-wrap items-center gap-2">
                                             <button

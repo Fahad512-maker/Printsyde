@@ -2,12 +2,13 @@
 
 namespace App\Models;
 
+use Database\Factories\CatalogItemFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class CatalogItem extends Model
 {
-    /** @use HasFactory<\Database\Factories\CatalogItemFactory> */
+    /** @use HasFactory<CatalogItemFactory> */
     use HasFactory;
 
     /**
@@ -20,6 +21,7 @@ class CatalogItem extends Model
         'minimum_order_quantity',
         'starting_price',
         'image_url',
+        'image_urls',
         'sort_order',
         'is_active',
     ];
@@ -32,8 +34,23 @@ class CatalogItem extends Model
         return [
             'minimum_order_quantity' => 'integer',
             'starting_price' => 'integer',
+            'image_urls' => 'array',
             'sort_order' => 'integer',
             'is_active' => 'boolean',
         ];
+    }
+
+    /**
+     * @return array<int, string>
+     */
+    public function resolvedImageUrls(): array
+    {
+        $imageUrls = $this->image_urls ?? [];
+
+        if (count($imageUrls) > 0) {
+            return array_values(array_filter($imageUrls));
+        }
+
+        return array_values(array_filter([$this->image_url]));
     }
 }

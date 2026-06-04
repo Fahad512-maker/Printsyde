@@ -4,6 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Validator;
 
 class UpdateCatalogItemRequest extends FormRequest
 {
@@ -28,10 +29,25 @@ class UpdateCatalogItemRequest extends FormRequest
             'print_type' => ['required', 'string', 'max:100'],
             'minimum_order_quantity' => ['required', 'integer', 'min:1'],
             'starting_price' => ['required', 'integer', 'min:0'],
-            'image_url' => ['required', 'url', 'max:2048'],
+            'images' => ['nullable', 'array'],
+            'images.*' => ['required', 'image', 'mimes:jpg,jpeg,png,webp', 'max:5120'],
+            'retained_image_paths' => ['nullable', 'array'],
+            'retained_image_paths.*' => ['string'],
             'sort_order' => ['nullable', 'integer', 'min:0'],
             'is_active' => ['nullable', 'boolean'],
         ];
+    }
+
+    public function withValidator(Validator $validator): void
+    {
+        $validator->after(function (Validator $validator): void {
+            $uploadedImages = $this->file('images', []);
+            $retainedImagePaths = $this->input('retained_image_paths', []);
+
+            if (count($uploadedImages) === 0 && count($retainedImagePaths) === 0) {
+                $validator->errors()->add('images', 'Please keep at least one existing image or upload a new one.');
+            }
+        });
     }
 
     /**
@@ -47,8 +63,9 @@ class UpdateCatalogItemRequest extends FormRequest
             'minimum_order_quantity.min' => 'Minimum order quantity must be at least 1.',
             'starting_price.required' => 'Starting price is required.',
             'starting_price.min' => 'Starting price cannot be negative.',
-            'image_url.required' => 'Image URL is required.',
-            'image_url.url' => 'Please enter a valid image URL.',
+            'images.*.image' => 'Each selected file must be an image.',
+            'images.*.mimes' => 'Images must be JPG, PNG, or WEBP format.',
+            'images.*.max' => 'Each image must be 5 MB or smaller.',
         ];
     }
 }

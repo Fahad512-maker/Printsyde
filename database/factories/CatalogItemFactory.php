@@ -25,7 +25,8 @@ class CatalogItemFactory extends Factory
             'print_type' => fake()->randomElement(['DTF Print', 'Screen Print', 'Embroidery', 'Sublimation']),
             'minimum_order_quantity' => fake()->numberBetween(20, 60),
             'starting_price' => fake()->numberBetween(900, 1800),
-            'image_url' => fake()->imageUrl(900, 600, 'fashion'),
+            'image_url' => $imageUrl = fake()->imageUrl(900, 600, 'fashion'),
+            'image_urls' => [$imageUrl],
             'sort_order' => fake()->numberBetween(1, 100),
             'is_active' => true,
         ];

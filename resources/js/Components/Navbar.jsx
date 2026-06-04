@@ -6,7 +6,7 @@ const links = [
     { name: "Home", href: "/" },
     { name: "About", href: "/about" },
     { name: "Collections", href: "/collections" },
-    { name: "How It Works", href: "/#how-it-works" },
+    { name: "How It Works", href: "/how-it-works" },
     { name: "Contact", href: "/#contact" },
 ];
 
@@ -188,7 +188,7 @@ export default function Navbar() {
                         </button>
 
                         <Link
-                            href="/#order"
+                            href="/design"
                             className="shrink-0 rounded-full border border-slate-900/10 bg-gradient-to-r from-slate-950 via-slate-800 to-amber-700 px-4 py-3 text-[0.68rem] font-semibold tracking-[0.18em] text-white uppercase shadow-[0_14px_30px_rgba(15,23,42,0.18)] transition duration-300 hover:-translate-y-0.5 hover:shadow-[0_20px_40px_rgba(15,23,42,0.24)] sm:px-6 sm:text-sm"
                         >
                             Start Design
@@ -221,7 +221,7 @@ export default function Navbar() {
                                         className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-900 transition hover:border-slate-300 hover:bg-slate-50"
                                         aria-label="Close navigation menu"
                                     >
-                                        <span className="text-lg leading-none">×</span>
+                                        <span className="text-lg leading-none">X</span>
                                     </button>
                                 </div>
 
@@ -230,7 +230,7 @@ export default function Navbar() {
                                 </div>
 
                                 <Link
-                                    href="/#order"
+                                    href="/design"
                                     onClick={() => setIsMobileMenuOpen(false)}
                                     className="lux-button-primary mt-5 flex w-full justify-center"
                                 >

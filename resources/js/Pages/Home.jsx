@@ -1,5 +1,6 @@
 import { Head } from "@inertiajs/react";
 import { useEffect, useState } from "react";
+import CatalogProductCard from "../Components/CatalogProductCard";
 import Footer from "../Components/Footer";
 import Header from "../Components/Header";
 import Navbar from "../Components/Navbar";
@@ -153,121 +154,132 @@ export default function Home({
                 <Navbar />
 
                 <section className="relative overflow-hidden px-3 pb-8 pt-4 sm:px-6 lg:px-8">
-                <div className="mx-auto max-w-7xl overflow-hidden rounded-[2.25rem] border border-white/60 shadow-[0_30px_80px_rgba(15,23,42,0.12)] ring-1 ring-slate-200/60">
-                    <div className="relative min-h-[620px]">
-                        {sliderItems.map((item, index) => (
-                            <article
-                                key={item.title}
-                                className={`absolute inset-0 transition-opacity duration-700 ${
-                                    index === activeSlide
-                                        ? "opacity-100"
-                                        : "pointer-events-none opacity-0"
-                                }`}
-                            >
-                                <img
-                                    src={item.image}
-                                    alt={item.title}
-                                    className="h-full w-full object-cover"
-                                />
-                                <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(2,6,23,0.90)_0%,rgba(15,23,42,0.76)_42%,rgba(15,23,42,0.24)_100%)]" />
-                                <div className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-black/20 to-transparent" />
-                                <div className="lux-shell relative flex min-h-[620px] items-center py-16 sm:py-20">
-                                    <div className="grid w-full gap-10 lg:grid-cols-[1.15fr_0.85fr]">
-                                        <div className="max-w-2xl text-white">
-                                            <p className="lux-kicker border-amber-400/30 bg-white/10 text-amber-300">
-                                                Premium Custom Apparel Studio
-                                            </p>
-                                            <h1 className="mt-6 text-4xl font-black leading-tight tracking-tight sm:text-5xl lg:text-6xl">
-                                                {item.title}
-                                            </h1>
-                                            <p className="mt-6 max-w-xl text-base leading-8 text-slate-200 sm:text-lg">
-                                                {item.subtitle}
-                                            </p>
-                                            <div
-                                                id="order"
-                                                className="mt-8 flex flex-wrap gap-4"
-                                            >
-                                                <a
-                                                    href="#catalog"
-                                                    className="lux-button-primary"
-                                                >
-                                                    Explore Catalog
-                                                </a>
-                                                <a
-                                                    href="#services"
-                                                    className="lux-button-secondary border-white/30 bg-white/10 text-white hover:border-white/50 hover:bg-white/15"
-                                                >
-                                                    View Services
-                                                </a>
-                                            </div>
-                                        </div>
-
-                                        <div className="hidden lg:flex lg:items-end lg:justify-end">
-                                            <div className="w-full max-w-md rounded-[2rem] border border-white/10 bg-white/10 p-6 backdrop-blur-md">
-                                                <p className="text-xs font-semibold tracking-[0.2em] text-amber-300 uppercase">
-                                                    Executive Summary
+                    <div className="mx-auto max-w-7xl overflow-hidden rounded-[2.25rem] border border-white/60 shadow-[0_30px_80px_rgba(15,23,42,0.12)] ring-1 ring-slate-200/60">
+                        <div className="relative min-h-[620px]">
+                            {sliderItems.map((item, index) => (
+                                <article
+                                    key={item.title}
+                                    className={`absolute inset-0 transition-opacity duration-700 ${
+                                        index === activeSlide
+                                            ? "opacity-100"
+                                            : "pointer-events-none opacity-0"
+                                    }`}
+                                >
+                                    <img
+                                        src={item.image}
+                                        alt={item.title}
+                                        className="h-full w-full object-cover"
+                                    />
+                                    <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(2,6,23,0.90)_0%,rgba(15,23,42,0.76)_42%,rgba(15,23,42,0.24)_100%)]" />
+                                    <div className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-black/20 to-transparent" />
+                                    <div className="lux-shell relative flex min-h-[620px] items-center py-16 sm:py-20">
+                                        <div className="grid w-full gap-10 lg:grid-cols-[1.15fr_0.85fr]">
+                                            <div className="max-w-2xl text-white">
+                                                <p className="lux-kicker border-amber-400/30 bg-white/10 text-amber-300">
+                                                    Premium Custom Apparel
+                                                    Studio
                                                 </p>
-                                                <div className="mt-6 grid gap-4 sm:grid-cols-2">
-                                                    {trustStats.map((stat) => (
-                                                        <div
-                                                            key={stat.label}
-                                                            className="rounded-2xl border border-white/10 bg-black/20 px-4 py-5"
-                                                        >
-                                                            <p className="text-3xl font-black text-white">
-                                                                {stat.value}
-                                                            </p>
-                                                            <p className="mt-2 text-xs font-semibold tracking-[0.18em] text-slate-300 uppercase">
-                                                                {stat.label}
-                                                            </p>
-                                                        </div>
-                                                    ))}
+                                                <h1 className="mt-6 text-4xl font-black leading-tight tracking-tight sm:text-5xl lg:text-6xl">
+                                                    {item.title}
+                                                </h1>
+                                                <p className="mt-6 max-w-xl text-base leading-8 text-slate-200 sm:text-lg">
+                                                    {item.subtitle}
+                                                </p>
+                                                <div
+                                                    id="order"
+                                                    className="mt-8 flex flex-wrap gap-4"
+                                                >
+                                                    <a
+                                                        href="#catalog"
+                                                        className="lux-button-primary"
+                                                    >
+                                                        Explore Catalog
+                                                    </a>
+                                                    <a
+                                                        href="#services"
+                                                        className="lux-button-secondary border-white/30 bg-white/10 text-white hover:border-white/50 hover:bg-white/15"
+                                                    >
+                                                        View Services
+                                                    </a>
+                                                </div>
+                                            </div>
+
+                                            <div className="hidden lg:flex lg:items-end lg:justify-end">
+                                                <div className="w-full max-w-md rounded-[2rem] border border-white/10 bg-white/10 p-6 backdrop-blur-md">
+                                                    <p className="text-xs font-semibold tracking-[0.2em] text-amber-300 uppercase">
+                                                        Executive Summary
+                                                    </p>
+                                                    <div className="mt-6 grid gap-4 sm:grid-cols-2">
+                                                        {trustStats.map(
+                                                            (stat) => (
+                                                                <div
+                                                                    key={
+                                                                        stat.label
+                                                                    }
+                                                                    className="rounded-2xl border border-white/10 bg-black/20 px-4 py-5"
+                                                                >
+                                                                    <p className="text-3xl font-black text-white">
+                                                                        {
+                                                                            stat.value
+                                                                        }
+                                                                    </p>
+                                                                    <p className="mt-2 text-xs font-semibold tracking-[0.18em] text-slate-300 uppercase">
+                                                                        {
+                                                                            stat.label
+                                                                        }
+                                                                    </p>
+                                                                </div>
+                                                            ),
+                                                        )}
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                            </article>
-                        ))}
-                    </div>
+                                </article>
+                            ))}
+                        </div>
 
-                    <div className="border-t border-white/10 bg-slate-950/95 px-6 py-5 text-white backdrop-blur-md">
-                        <div className="mx-auto flex max-w-7xl flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
-                            <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4 lg:gap-4">
-                                {trustStats.map((stat) => (
-                                    <div
-                                        key={stat.label}
-                                        className="rounded-2xl border border-white/10 bg-white/5 px-4 py-3"
-                                    >
-                                        <p className="text-2xl font-black">
-                                            {stat.value}
-                                        </p>
-                                        <p className="mt-1 text-[0.7rem] font-semibold tracking-[0.16em] text-slate-300 uppercase">
-                                            {stat.label}
-                                        </p>
-                                    </div>
-                                ))}
-                            </div>
-                            <div className="flex gap-2 self-end lg:self-auto">
-                                {sliderItems.map((item, index) => (
-                                    <button
-                                        key={item.title}
-                                        type="button"
-                                        onClick={() => setActiveSlide(index)}
-                                        className={`h-2.5 rounded-full transition ${
-                                            index === activeSlide
-                                                ? "w-10 bg-amber-300"
-                                                : "w-2.5 bg-white/40"
-                                        }`}
-                                        aria-label={`Show slide ${index + 1}`}
-                                    />
-                                ))}
+                        <div className="border-t border-white/10 bg-slate-950/95 px-6 py-5 text-white backdrop-blur-md">
+                            <div className="mx-auto flex max-w-7xl flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
+                                <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4 lg:gap-4">
+                                    {trustStats.map((stat) => (
+                                        <div
+                                            key={stat.label}
+                                            className="rounded-2xl border border-white/10 bg-white/5 px-4 py-3"
+                                        >
+                                            <p className="text-2xl font-black">
+                                                {stat.value}
+                                            </p>
+                                            <p className="mt-1 text-[0.7rem] font-semibold tracking-[0.16em] text-slate-300 uppercase">
+                                                {stat.label}
+                                            </p>
+                                        </div>
+                                    ))}
+                                </div>
+                                <div className="flex gap-2 self-end lg:self-auto">
+                                    {sliderItems.map((item, index) => (
+                                        <button
+                                            key={item.title}
+                                            type="button"
+                                            onClick={() =>
+                                                setActiveSlide(index)
+                                            }
+                                            className={`h-2.5 rounded-full transition ${
+                                                index === activeSlide
+                                                    ? "w-10 bg-amber-300"
+                                                    : "w-2.5 bg-white/40"
+                                            }`}
+                                            aria-label={`Show slide ${index + 1}`}
+                                        />
+                                    ))}
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            </section>
+                </section>
 
-            <section id="services" className="lux-shell py-10 sm:py-14">
+                {/* <section id="services" className="lux-shell py-10 sm:py-14">
                 <div className="grid gap-6 lg:grid-cols-[0.9fr_1.1fr]">
                     <div className="lux-panel px-6 py-8 sm:px-8 sm:py-10">
                         <p className="lux-kicker">Signature Direction</p>
@@ -309,268 +321,258 @@ export default function Home({
                         ))}
                     </div>
                 </div>
-            </section>
+            </section> */}
 
-            <section id="catalog" className="lux-shell py-10 sm:py-14">
-                <div className="lux-panel overflow-hidden px-6 py-8 sm:px-8 sm:py-10">
-                    <div className="mb-8 flex flex-wrap items-center justify-between gap-4">
-                        <div className="max-w-2xl">
-                            <p className="lux-kicker">Featured Catalog</p>
-                            <h2 className="mt-5 text-3xl font-black tracking-tight text-slate-950 sm:text-4xl">
-                                Browse market-ready concepts before your custom
-                                order begins.
-                            </h2>
-                            <p className="mt-4 lux-copy">
-                                With the sample catalog, you can quickly compare
-                                styles, print types, and pricing directions.
-                            </p>
+                <section id="catalog" className="lux-shell py-10 sm:py-14">
+                    <div className="lux-panel overflow-hidden px-6 py-8 sm:px-8 sm:py-10">
+                        <div className="mb-8 flex flex-wrap items-center justify-between gap-4">
+                            <div className="max-w-2xl">
+                                <p className="lux-kicker">Featured Catalog</p>
+                                <h2 className="mt-5 text-3xl font-black tracking-tight text-slate-950 sm:text-4xl">
+                                    Browse market-ready concepts before your
+                                    custom order begins.
+                                </h2>
+                                <p className="mt-4 lux-copy">
+                                    With the sample catalog, you can quickly
+                                    compare styles, print types, and pricing
+                                    directions.
+                                </p>
+                            </div>
+                            <a href="#contact" className="lux-button-primary">
+                                Get Custom Quote
+                            </a>
                         </div>
-                        <a href="#contact" className="lux-button-primary">
-                            Get Custom Quote
-                        </a>
-                    </div>
 
-                    {catalogTabs.length > 0 && (
-                        <div className="mb-8 flex flex-wrap gap-3">
-                            {catalogTabs.map((tab) => (
-                                <button
-                                    key={tab}
-                                    type="button"
-                                    onClick={() => setActiveCatalogTab(tab)}
-                                    className={`rounded-full px-5 py-2.5 text-xs font-semibold tracking-[0.18em] uppercase transition ${
-                                        activeCatalogTab === tab
-                                            ? "bg-slate-950 text-white shadow-lg"
-                                            : "border border-slate-200 bg-white text-slate-700 hover:border-slate-300 hover:bg-slate-50"
-                                    }`}
-                                >
-                                    {tab}
-                                </button>
-                            ))}
-                        </div>
-                    )}
+                        {catalogTabs.length > 0 && (
+                            <div className="mb-8 flex flex-wrap gap-3">
+                                {catalogTabs.map((tab) => (
+                                    <button
+                                        key={tab}
+                                        type="button"
+                                        onClick={() => setActiveCatalogTab(tab)}
+                                        className={`rounded-full px-5 py-2.5 text-xs font-semibold tracking-[0.18em] uppercase transition ${
+                                            activeCatalogTab === tab
+                                                ? "bg-slate-950 text-white shadow-lg"
+                                                : "border border-slate-200 bg-white text-slate-700 hover:border-slate-300 hover:bg-slate-50"
+                                        }`}
+                                    >
+                                        {tab}
+                                    </button>
+                                ))}
+                            </div>
+                        )}
 
                     <div className="grid gap-6 sm:grid-cols-2 xl:grid-cols-4">
-                        {filteredCatalogItems.map((shirt) => (
-                            <article
+                        {filteredCatalogItems.map((shirt, index) => (
+                            <CatalogProductCard
                                 key={`${shirt.tab}-${shirt.name}`}
-                                className="overflow-hidden rounded-[1.75rem] border border-slate-200 bg-white shadow-[0_18px_40px_rgba(15,23,42,0.07)] transition duration-300 hover:-translate-y-1 hover:shadow-[0_24px_50px_rgba(15,23,42,0.12)]"
-                            >
-                                <img
-                                    src={shirt.image}
-                                    alt={shirt.name}
-                                    className="h-60 w-full object-cover"
-                                />
-                                <div className="p-5">
-                                    <p className="text-xs font-semibold tracking-[0.18em] text-amber-700 uppercase">
-                                        {shirt.tab}
-                                    </p>
-                                    <h3 className="mt-3 text-lg font-black text-slate-950">
-                                        {shirt.name}
-                                    </h3>
-                                    <p className="mt-2 text-sm text-slate-600">
-                                        {shirt.printType}
-                                    </p>
-                                    <div className="mt-5 flex items-center justify-between text-xs font-semibold tracking-[0.08em] text-slate-500 uppercase">
-                                        <span>{shirt.minOrder}</span>
-                                        <span className="text-amber-700">
-                                            {shirt.price}
-                                        </span>
-                                    </div>
-                                </div>
-                            </article>
+                                product={{
+                                    id: `${shirt.tab}-${shirt.name}-${index}`,
+                                    ...shirt,
+                                    category: shirt.category ?? shirt.tab,
+                                    brand: shirt.tab,
+                                    detail: shirt.printType,
+                                    badge: shirt.printType,
+                                    sizes: ["Custom Fit"],
+                                    colors: ["Black", "White", "Gold"],
+                                }}
+                                actionLabel="Get Quote"
+                                className="rounded-[1.75rem]"
+                            />
                         ))}
 
-                        {catalogItems.length === 0 && (
-                            <article className="col-span-full rounded-[1.75rem] border border-dashed border-slate-300 bg-slate-50/70 p-10 text-center">
-                                <p className="text-sm font-semibold tracking-[0.1em] text-slate-600 uppercase">
-                                    Catalog items abhi available nahi hain.
+                            {catalogItems.length === 0 && (
+                                <article className="col-span-full rounded-[1.75rem] border border-dashed border-slate-300 bg-slate-50/70 p-10 text-center">
+                                    <p className="text-sm font-semibold tracking-[0.1em] text-slate-600 uppercase">
+                                        Catalog items abhi available nahi hain.
+                                    </p>
+                                </article>
+                            )}
+                        </div>
+                    </div>
+                </section>
+
+                <section id="collections" className="lux-shell py-10 sm:py-14">
+                    <div className="mb-8 max-w-3xl">
+                        <p className="lux-kicker">Collection Types</p>
+                        <h2 className="mt-5 lux-title">
+                            Signature product categories built for premium brand
+                            visibility.
+                        </h2>
+                        <p className="mt-5 lux-copy">
+                            Each collection is developed according to a distinct
+                            audience, usage, and price point, so that your
+                            presentation is not just appealing, but also
+                            strategically relevant.
+                        </p>
+                    </div>
+
+                    <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-4">
+                        {collections.map((collection) => (
+                            <article
+                                key={collection.title}
+                                className="lux-panel px-6 py-8"
+                            >
+                                <div className="h-24 rounded-[1.5rem] bg-[linear-gradient(135deg,rgba(15,23,42,0.98),rgba(120,53,15,0.80))]" />
+                                <h3 className="mt-6 text-xl font-black text-slate-950">
+                                    {collection.title}
+                                </h3>
+                                <p className="mt-3 text-sm leading-7 text-slate-600">
+                                    {collection.desc}
                                 </p>
                             </article>
-                        )}
+                        ))}
                     </div>
-                </div>
-            </section>
+                </section>
 
-            <section id="collections" className="lux-shell py-10 sm:py-14">
-                <div className="mb-8 max-w-3xl">
-                    <p className="lux-kicker">Collection Types</p>
-                    <h2 className="mt-5 lux-title">
-                        Signature product categories built for premium brand
-                        visibility.
-                    </h2>
-                    <p className="mt-5 lux-copy">
-                        Each collection is developed according to a distinct
-                        audience, usage, and price point, so that your
-                        presentation is not just appealing, but also
-                        strategically relevant.
-                    </p>
-                </div>
+                <section className="lux-shell py-10 sm:py-14">
+                    <div className="grid gap-6 lg:grid-cols-[1fr_1fr]">
+                        <div className="lux-panel overflow-hidden p-3">
+                            <img
+                                src="https://images.unsplash.com/photo-1512436991641-6745cdb1723f?auto=format&fit=crop&w=1200&q=80"
+                                alt="Custom T-shirt printing process"
+                                className="h-full min-h-[420px] w-full rounded-[1.6rem] object-cover"
+                            />
+                        </div>
 
-                <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-4">
-                    {collections.map((collection) => (
-                        <article
-                            key={collection.title}
-                            className="lux-panel px-6 py-8"
-                        >
-                            <div className="h-24 rounded-[1.5rem] bg-[linear-gradient(135deg,rgba(15,23,42,0.98),rgba(120,53,15,0.80))]" />
-                            <h3 className="mt-6 text-xl font-black text-slate-950">
-                                {collection.title}
-                            </h3>
-                            <p className="mt-3 text-sm leading-7 text-slate-600">
-                                {collection.desc}
+                        <div className="lux-panel-dark px-6 py-8 sm:px-8 sm:py-10">
+                            <p className="lux-kicker border-amber-400/30 bg-white/5 text-amber-300">
+                                Why PrintSyde
                             </p>
-                        </article>
-                    ))}
-                </div>
-            </section>
+                            <h2 className="mt-5 text-3xl font-black tracking-tight text-white sm:text-4xl">
+                                Built for businesses that want quality to look
+                                as premium as the promise.
+                            </h2>
+                            <p className="mt-5 text-sm leading-8 text-slate-300 sm:text-base">
+                                Our team does not treat production as merely an
+                                operational task. In every order, product
+                                quality, visual consistency, and the delivery
+                                experience are managed at the level of brand
+                                perception.
+                            </p>
+                            <div className="mt-8 grid gap-4 sm:grid-cols-2">
+                                {[
+                                    "Premium fabric sourcing and finishing",
+                                    "Screen print, DTF, and embroidery options",
+                                    "Bulk program pricing for teams and events",
+                                    "Reliable communication from briefing to dispatch",
+                                ].map((item) => (
+                                    <div
+                                        key={item}
+                                        className="rounded-2xl border border-white/10 bg-white/5 px-4 py-4 text-sm leading-7 text-slate-200"
+                                    >
+                                        {item}
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                    </div>
+                </section>
 
-            <section className="lux-shell py-10 sm:py-14">
-                <div className="grid gap-6 lg:grid-cols-[1fr_1fr]">
-                    <div className="lux-panel overflow-hidden p-3">
-                        <img
-                            src="https://images.unsplash.com/photo-1512436991641-6745cdb1723f?auto=format&fit=crop&w=1200&q=80"
-                            alt="Custom T-shirt printing process"
-                            className="h-full min-h-[420px] w-full rounded-[1.6rem] object-cover"
-                        />
+                <section id="how-it-works" className="lux-shell py-10 sm:py-14">
+                    <div className="mb-8 max-w-3xl">
+                        <p className="lux-kicker">How It Works</p>
+                        <h2 className="mt-5 lux-title">
+                            A structured production journey with a luxury client
+                            experience.
+                        </h2>
+                        <p className="mt-5 lux-copy">
+                            The process from discovery to dispatch has been
+                            designed in such a way that you experience clarity,
+                            confidence, and a premium level of service.
+                        </p>
                     </div>
 
-                    <div className="lux-panel-dark px-6 py-8 sm:px-8 sm:py-10">
-                        <p className="lux-kicker border-amber-400/30 bg-white/5 text-amber-300">
-                            Why PrintSyde
-                        </p>
-                        <h2 className="mt-5 text-3xl font-black tracking-tight text-white sm:text-4xl">
-                            Built for businesses that want quality to look as
-                            premium as the promise.
-                        </h2>
-                        <p className="mt-5 text-sm leading-8 text-slate-300 sm:text-base">
-                            Our team does not treat production as merely an
-                            operational task. In every order, product quality,
-                            visual consistency, and the delivery experience are
-                            managed at the level of brand perception.
-                        </p>
-                        <div className="mt-8 grid gap-4 sm:grid-cols-2">
-                            {[
-                                "Premium fabric sourcing and finishing",
-                                "Screen print, DTF, and embroidery options",
-                                "Bulk program pricing for teams and events",
-                                "Reliable communication from briefing to dispatch",
-                            ].map((item) => (
-                                <div
-                                    key={item}
-                                    className="rounded-2xl border border-white/10 bg-white/5 px-4 py-4 text-sm leading-7 text-slate-200"
+                    <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-4">
+                        {processSteps.map((item) => (
+                            <article
+                                key={item.step}
+                                className="lux-panel-dark px-6 py-8"
+                            >
+                                <p className="text-sm font-black tracking-[0.2em] text-amber-300 uppercase">
+                                    {item.step}
+                                </p>
+                                <h3 className="mt-5 text-xl font-black text-white">
+                                    {item.title}
+                                </h3>
+                                <p className="mt-4 text-sm leading-7 text-slate-300">
+                                    {item.detail}
+                                </p>
+                            </article>
+                        ))}
+                    </div>
+                </section>
+
+                <section className="lux-shell py-10 sm:py-14">
+                    <div className="grid gap-6 lg:grid-cols-[0.95fr_1.05fr]">
+                        <div className="lux-panel px-6 py-8 sm:px-8 sm:py-10">
+                            <p className="lux-kicker">Client Confidence</p>
+                            <h2 className="mt-5 text-3xl font-black tracking-tight text-slate-950 sm:text-4xl">
+                                The kind of presentation clients remember after
+                                delivery.
+                            </h2>
+                            <p className="mt-5 lux-copy">
+                                Premium apparel ka impact sirf product tak
+                                limited nahi hota. Jab quality, packaging, aur
+                                service aligned hotay hain to brand perception
+                                naturally elevate hoti hai.
+                            </p>
+                        </div>
+
+                        <div className="grid gap-6 md:grid-cols-2">
+                            {testimonials.map((item) => (
+                                <article
+                                    key={item.name}
+                                    className="lux-panel px-6 py-8"
                                 >
-                                    {item}
-                                </div>
+                                    <p className="text-3xl leading-none text-amber-600">
+                                        "
+                                    </p>
+                                    <p className="mt-4 text-sm leading-8 text-slate-700">
+                                        {item.quote}
+                                    </p>
+                                    <p className="mt-6 text-base font-black text-slate-950">
+                                        {item.name}
+                                    </p>
+                                    <p className="mt-1 text-xs font-semibold tracking-[0.16em] text-slate-500 uppercase">
+                                        {item.role}
+                                    </p>
+                                </article>
                             ))}
                         </div>
                     </div>
-                </div>
-            </section>
+                </section>
 
-            <section id="how-it-works" className="lux-shell py-10 sm:py-14">
-                <div className="mb-8 max-w-3xl">
-                    <p className="lux-kicker">How It Works</p>
-                    <h2 className="mt-5 lux-title">
-                        A structured production journey with a luxury client
-                        experience.
-                    </h2>
-                    <p className="mt-5 lux-copy">
-                        The process from discovery to dispatch has been designed
-                        in such a way that you experience clarity, confidence,
-                        and a premium level of service.
-                    </p>
-                </div>
-
-                <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-4">
-                    {processSteps.map((item) => (
-                        <article
-                            key={item.step}
-                            className="lux-panel-dark px-6 py-8"
-                        >
-                            <p className="text-sm font-black tracking-[0.2em] text-amber-300 uppercase">
-                                {item.step}
-                            </p>
-                            <h3 className="mt-5 text-xl font-black text-white">
-                                {item.title}
-                            </h3>
-                            <p className="mt-4 text-sm leading-7 text-slate-300">
-                                {item.detail}
-                            </p>
-                        </article>
-                    ))}
-                </div>
-            </section>
-
-            <section className="lux-shell py-10 sm:py-14">
-                <div className="grid gap-6 lg:grid-cols-[0.95fr_1.05fr]">
-                    <div className="lux-panel px-6 py-8 sm:px-8 sm:py-10">
-                        <p className="lux-kicker">Client Confidence</p>
-                        <h2 className="mt-5 text-3xl font-black tracking-tight text-slate-950 sm:text-4xl">
-                            The kind of presentation clients remember after
-                            delivery.
-                        </h2>
-                        <p className="mt-5 lux-copy">
-                            Premium apparel ka impact sirf product tak limited
-                            nahi hota. Jab quality, packaging, aur service
-                            aligned hotay hain to brand perception naturally
-                            elevate hoti hai.
+                <section className="lux-shell py-10 sm:py-14">
+                    <div className="lux-panel-dark px-6 py-10 text-center sm:px-10 sm:py-14">
+                        <p className="lux-kicker border-amber-400/30 bg-white/5 text-amber-300">
+                            Ready To Begin
                         </p>
-                    </div>
-
-                    <div className="grid gap-6 md:grid-cols-2">
-                        {testimonials.map((item) => (
-                            <article
-                                key={item.name}
-                                className="lux-panel px-6 py-8"
+                        <h2 className="mx-auto mt-5 max-w-3xl text-3xl font-black tracking-tight text-white sm:text-4xl lg:text-5xl">
+                            Launch a custom apparel experience that looks
+                            premium across every touchpoint.
+                        </h2>
+                        <p className="mx-auto mt-5 max-w-2xl text-sm leading-8 text-slate-300 sm:text-base">
+                            Aaj hi apna brief share karein. Hum aapko fabric
+                            options, design approach, pricing direction, aur
+                            production timeline ke sath guide karenge.
+                        </p>
+                        <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
+                            <a
+                                href="mailto:support@printsyde.com"
+                                className="lux-button-primary"
                             >
-                                <p className="text-3xl leading-none text-amber-600">
-                                    "
-                                </p>
-                                <p className="mt-4 text-sm leading-8 text-slate-700">
-                                    {item.quote}
-                                </p>
-                                <p className="mt-6 text-base font-black text-slate-950">
-                                    {item.name}
-                                </p>
-                                <p className="mt-1 text-xs font-semibold tracking-[0.16em] text-slate-500 uppercase">
-                                    {item.role}
-                                </p>
-                            </article>
-                        ))}
+                                Contact Our Team
+                            </a>
+                            <a
+                                href="/about"
+                                className="lux-button-secondary border-white/20 bg-white/5 text-white hover:border-white/30 hover:bg-white/10"
+                            >
+                                About PrintSyde
+                            </a>
+                        </div>
                     </div>
-                </div>
-            </section>
-
-            <section className="lux-shell py-10 sm:py-14">
-                <div className="lux-panel-dark px-6 py-10 text-center sm:px-10 sm:py-14">
-                    <p className="lux-kicker border-amber-400/30 bg-white/5 text-amber-300">
-                        Ready To Begin
-                    </p>
-                    <h2 className="mx-auto mt-5 max-w-3xl text-3xl font-black tracking-tight text-white sm:text-4xl lg:text-5xl">
-                        Launch a custom apparel experience that looks premium
-                        across every touchpoint.
-                    </h2>
-                    <p className="mx-auto mt-5 max-w-2xl text-sm leading-8 text-slate-300 sm:text-base">
-                        Aaj hi apna brief share karein. Hum aapko fabric
-                        options, design approach, pricing direction, aur
-                        production timeline ke sath guide karenge.
-                    </p>
-                    <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
-                        <a
-                            href="mailto:support@printsyde.com"
-                            className="lux-button-primary"
-                        >
-                            Contact Our Team
-                        </a>
-                        <a
-                            href="/about"
-                            className="lux-button-secondary border-white/20 bg-white/5 text-white hover:border-white/30 hover:bg-white/10"
-                        >
-                            About PrintSyde
-                        </a>
-                    </div>
-                </div>
-            </section>
+                </section>
 
                 <Footer />
             </div>

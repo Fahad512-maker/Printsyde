@@ -22,6 +22,13 @@ class DashboardController extends Controller
 
     public function admin(): Response
     {
+        $defaultCatalogCategories = [
+            'Trending',
+            'Corporate',
+            'Sports',
+            'Events',
+        ];
+
         $catalogItems = CatalogItem::query()
             ->orderBy('sort_order')
             ->orderBy('name')
@@ -34,6 +41,7 @@ class DashboardController extends Controller
                     'print_type' => $catalogItem->print_type,
                     'minimum_order_quantity' => $catalogItem->minimum_order_quantity,
                     'starting_price' => $catalogItem->starting_price,
+                    'image_urls' => $catalogItem->resolvedImageUrls(),
                     'image_url' => $catalogItem->image_url,
                     'sort_order' => $catalogItem->sort_order,
                     'is_active' => $catalogItem->is_active,
@@ -89,6 +97,15 @@ class DashboardController extends Controller
 
         return Inertia::render('AdminDashboard', [
             'catalogItems' => $catalogItems,
+            'catalogCategories' => CatalogItem::query()
+                ->select('category')
+                ->distinct()
+                ->orderBy('category')
+                ->pluck('category')
+                ->filter()
+                ->merge($defaultCatalogCategories)
+                ->unique()
+                ->values(),
             'adminMetrics' => $adminMetrics,
             'userRows' => $userRows,
         ]);

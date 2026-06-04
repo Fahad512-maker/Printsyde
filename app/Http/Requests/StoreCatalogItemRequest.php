@@ -28,7 +28,8 @@ class StoreCatalogItemRequest extends FormRequest
             'print_type' => ['required', 'string', 'max:100'],
             'minimum_order_quantity' => ['required', 'integer', 'min:1'],
             'starting_price' => ['required', 'integer', 'min:0'],
-            'image_url' => ['required', 'url', 'max:2048'],
+            'images' => ['required', 'array', 'min:1'],
+            'images.*' => ['required', 'image', 'mimes:jpg,jpeg,png,webp', 'max:5120'],
             'sort_order' => ['nullable', 'integer', 'min:0'],
             'is_active' => ['nullable', 'boolean'],
         ];
@@ -47,8 +48,11 @@ class StoreCatalogItemRequest extends FormRequest
             'minimum_order_quantity.min' => 'Minimum order quantity must be at least 1.',
             'starting_price.required' => 'Starting price is required.',
             'starting_price.min' => 'Starting price cannot be negative.',
-            'image_url.required' => 'Image URL is required.',
-            'image_url.url' => 'Please enter a valid image URL.',
+            'images.required' => 'At least one catalog image is required.',
+            'images.min' => 'Please upload at least one catalog image.',
+            'images.*.image' => 'Each selected file must be an image.',
+            'images.*.mimes' => 'Images must be JPG, PNG, or WEBP format.',
+            'images.*.max' => 'Each image must be 5 MB or smaller.',
         ];
     }
 }

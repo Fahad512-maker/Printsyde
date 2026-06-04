@@ -6,7 +6,7 @@ const footerGroups = [
         links: [
             { label: "About Us", href: "/about" },
             { label: "Collections", href: "/collections" },
-            { label: "How It Works", href: "/#how-it-works" },
+            { label: "How It Works", href: "/how-it-works" },
         ],
     },
     {
@@ -22,7 +22,7 @@ const footerGroups = [
         links: [
             { label: "support@printsyde.com", href: "mailto:support@printsyde.com" },
             { label: "+92 300 1234567", href: "tel:+923001234567" },
-            { label: "Lahore, Pakistan", href: "/#contact" },
+            { label: "Hyderabad, Pakistan", href: "/#contact" },
         ],
     },
 ];
