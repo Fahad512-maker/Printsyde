@@ -184,3 +184,29 @@ test('admin dashboard includes catalog items for the list view', function () {
             ->where('catalogItems.0.name', 'Fresh Dashboard Tee')
         );
 });
+
+test('admin can toggle catalog item active status from dashboard list', function () {
+    $admin = User::factory()->create([
+        'is_admin' => true,
+    ]);
+
+    $catalogItem = CatalogItem::factory()->create([
+        'is_active' => false,
+    ]);
+
+    $response = $this
+        ->actingAs($admin)
+        ->put(route('dashboard.catalog-items.toggle-active', $catalogItem), [
+            'is_active' => true,
+        ]);
+
+    $response
+        ->assertRedirect(route('dashboard.admin', [
+            'module' => 'catalog',
+            'tab' => 'list',
+        ]));
+
+    $catalogItem->refresh();
+
+    expect($catalogItem->is_active)->toBeTrue();
+});

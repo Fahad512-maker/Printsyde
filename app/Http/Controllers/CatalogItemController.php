@@ -6,6 +6,7 @@ use App\Http\Requests\StoreCatalogItemRequest;
 use App\Http\Requests\UpdateCatalogItemRequest;
 use App\Models\CatalogItem;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
 
@@ -19,7 +20,7 @@ class CatalogItemController extends Controller
         $validated['image_urls'] = $storedImagePaths;
         $validated['image_url'] = $storedImagePaths[0];
         unset($validated['images']);
-
+       
         CatalogItem::query()->create($validated);
 
         return $this->redirectToCatalogList('T-shirt item added successfully.');
@@ -49,6 +50,23 @@ class CatalogItemController extends Controller
         $catalogItem->update($validated);
 
         return $this->redirectToCatalogList('T-shirt item updated successfully.');
+    }
+
+    public function toggleActive(Request $request, CatalogItem $catalogItem): RedirectResponse
+    {
+        $validated = $request->validate([
+            'is_active' => ['required', 'boolean'],
+        ]);
+
+        $catalogItem->update([
+            'is_active' => $validated['is_active'],
+        ]);
+
+        return $this->redirectToCatalogList(
+            $catalogItem->is_active
+                ? 'Catalog item activated successfully.'
+                : 'Catalog item deactivated successfully.',
+        );
     }
 
     public function destroy(CatalogItem $catalogItem): RedirectResponse

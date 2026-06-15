@@ -419,6 +419,7 @@ export default function Dashboard({
     const [searchTerm, setSearchTerm] = useState("");
     const [sidebarOpen, setSidebarOpen] = useState(false);
     const [editingCatalogId, setEditingCatalogId] = useState(null);
+    const [togglingCatalogId, setTogglingCatalogId] = useState(null);
     const catalogForm = useForm(initialCatalogData);
     const editCatalogForm = useForm(initialCatalogData);
     const deleteCatalogForm = useForm({});
@@ -594,6 +595,23 @@ export default function Dashboard({
         );
     };
 
+    const handleCatalogToggleActive = (item) => {
+        setTogglingCatalogId(item.id);
+
+        router.put(
+            route("dashboard.catalog-items.toggle-active", item.id),
+            {
+                is_active: !item.is_active,
+            },
+            {
+                preserveScroll: true,
+                preserveState: true,
+                onSuccess: () => reloadCatalogList(),
+                onFinish: () => setTogglingCatalogId(null),
+            },
+        );
+    };
+
     const handleModuleSelect = (module) => {
         setActiveModule(module);
     };
@@ -754,6 +772,18 @@ export default function Dashboard({
                                         className="inline-flex flex-1 items-center justify-center rounded-lg border border-cyan-300 px-3 py-2 text-xs font-semibold text-cyan-700 transition hover:bg-cyan-50"
                                     >
                                         Update
+                                    </button>
+                                    <button
+                                        type="button"
+                                        onClick={() =>
+                                            handleCatalogToggleActive(item)
+                                        }
+                                        disabled={togglingCatalogId === item.id}
+                                        className="inline-flex flex-1 items-center justify-center rounded-lg border border-slate-300 px-3 py-2 text-xs font-semibold text-slate-700 transition hover:bg-slate-100 disabled:cursor-not-allowed disabled:opacity-60"
+                                    >
+                                        {item.is_active
+                                            ? "Deactivate"
+                                            : "Activate"}
                                     </button>
                                     <button
                                         type="button"

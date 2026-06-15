@@ -24,6 +24,9 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::put('/dashboard/catalog-items/{catalogItem}', [CatalogItemController::class, 'update'])
         ->middleware('admin')
         ->name('dashboard.catalog-items.update');
+    Route::put('/dashboard/catalog-items/{catalogItem}/toggle-active', [CatalogItemController::class, 'toggleActive'])
+        ->middleware('admin')
+        ->name('dashboard.catalog-items.toggle-active');
     Route::delete('/dashboard/catalog-items/{catalogItem}', [CatalogItemController::class, 'destroy'])
         ->middleware('admin')
         ->name('dashboard.catalog-items.destroy');
