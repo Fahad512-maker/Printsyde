@@ -25,6 +25,11 @@ class HomeController extends Controller
         return Inertia::render('Collections/Index', $this->homePageService->getCollectionPageProps());
     }
 
+    public function contact(): Response
+    {
+        return Inertia::render('Contact');
+    }
+
     public function design(): Response
     {
         return Inertia::render('ComingSoon');

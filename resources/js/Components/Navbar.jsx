@@ -7,7 +7,7 @@ const links = [
     { name: "About", href: "/about" },
     { name: "Collections", href: "/collections" },
     { name: "How It Works", href: "/how-it-works" },
-    { name: "Contact", href: "/#contact" },
+    { name: "Contact", href: "/contact" },
 ];
 
 const brandLogo = {
@@ -158,7 +158,9 @@ export default function Navbar() {
                         <button
                             type="button"
                             onClick={() =>
-                                setIsMobileMenuOpen((currentState) => !currentState)
+                                setIsMobileMenuOpen(
+                                    (currentState) => !currentState,
+                                )
                             }
                             className="inline-flex h-12 w-12 items-center justify-center rounded-full border border-slate-200/80 bg-white/80 text-slate-900 shadow-sm transition duration-300 hover:bg-white lg:hidden"
                             aria-expanded={isMobileMenuOpen}
@@ -217,16 +219,22 @@ export default function Navbar() {
                                     </div>
                                     <button
                                         type="button"
-                                        onClick={() => setIsMobileMenuOpen(false)}
+                                        onClick={() =>
+                                            setIsMobileMenuOpen(false)
+                                        }
                                         className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-900 transition hover:border-slate-300 hover:bg-slate-50"
                                         aria-label="Close navigation menu"
                                     >
-                                        <span className="text-lg leading-none">X</span>
+                                        <span className="text-lg leading-none">
+                                            X
+                                        </span>
                                     </button>
                                 </div>
 
                                 <div className="mt-4 grid gap-3">
-                                    {links.map((link) => renderMobileNavLink(link))}
+                                    {links.map((link) =>
+                                        renderMobileNavLink(link),
+                                    )}
                                 </div>
 
                                 <Link

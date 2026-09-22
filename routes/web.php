@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/about', [HomeController::class, 'about'])->name('about');
 Route::get('/collections', [HomeController::class, 'collections'])->name('collections');
+Route::get('/contact', [HomeController::class, 'contact'])->name('contact');
 Route::get('/design', [HomeController::class, 'design'])->name('design');
 Route::get('/how-it-works', [HomeController::class, 'howItWorks'])->name('how-it-works');
 
